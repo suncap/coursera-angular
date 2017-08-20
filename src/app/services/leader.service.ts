@@ -7,6 +7,9 @@ export class LeaderService {
 
   constructor() { }
 
-  
+  getLeaders() : Leader[]{
+    return LEADERS;
+  }
+
 
 }
