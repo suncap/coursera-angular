@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators} from '@angular/forms';
+import { Feedback, ContactType } from '../shared/feedback';
 
 @Component({
   selector: 'app-contract',
@@ -7,9 +9,31 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ContractComponent implements OnInit {
 
-  constructor() { }
+  feedbackForm: FormGroup;
+  feedback: Feedback;
+  contactType = ContactType;
 
-  ngOnInit() {
+  constructor(private fb: FormBuilder) {
+    this.createForm();
   }
 
+  ngOnInit() {}
+
+  createForm() : void{
+    this.feedbackForm = this.fb.group({
+      firstname: '',
+      lastname: '',
+      telnum: 0,
+      email: '',
+      agree: false,
+      contacttype: 'None',
+      message: ''
+    });
+  }
+
+  onSubmit(): void {
+    this.feedback = this.feedbackForm.value;
+    console.log(this.feedback);
+    this.feedbackForm.reset();
+  }
 }
