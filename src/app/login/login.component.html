@@ -8,13 +8,27 @@
   {{ user | json}}
 </p>
 
-<form novalidate (ngSubmit)="onSubmit()">
+<form novalidate #loginForm="ngForm" (ngSubmit)="onSubmit()">
   <p>
-    <md-input-container>
-      <input mdInput placeholder="Username" [(ngModel)]="user.username" type="text" name="username" required>
+    <md-input-container dividerColor="{{ username.invalid && !username.pristine ? 'warn' : 'primary'}}">
+      <input mdInput placeholder="Username" [(ngModel)]="user.username" type="text" #username="ngModel" name="username" required>
+      <md-hint>
+        <span [hidden] = "username.pristine">
+          <span [hidden] = "!username.errors?.required">
+            username is required
+          </span>
+        </span>
+      </md-hint>
     </md-input-container>
-    <md-input-container>
-      <input mdInput placeholder="Password" [(ngModel)]="user.password" type="password" name="password" required>
+    <md-input-container dividerColor="{{ password.invalid && !password.pristine ? 'warn' : 'primary'}}">
+      <input mdInput placeholder="Password" [(ngModel)]="user.password" type="password" #password="ngModel" name="password" required>
+      <md-hint>
+        <span [hidden] = "password.pristine">
+          <span [hidden] = "!password.errors?.required">
+            password is required
+          </span>
+        </span>
+      </md-hint>
     </md-input-container>
     <md-checkbox name="remember" [(ngModel)]="user.remember">
       Remember Me
@@ -22,7 +36,7 @@
     <md-dialog-actions>
       <span class="flex-spacer"></span>
       <button md-button md-dialog-close>Cancel</button>
-      <button md-button type="submit">Login</button>
+      <button md-button class="background-primary" type="submit" [disabled]="loginForm.form.invalid">Login</button>
     </md-dialog-actions>
   </p>
 </form>
