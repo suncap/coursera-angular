@@ -21,10 +21,10 @@ export class ContractComponent implements OnInit {
 
   createForm() : void{
     this.feedbackForm = this.fb.group({
-      firstname: '',
-      lastname: '',
-      telnum: 0,
-      email: '',
+      firstname: ['', Validators.required],
+      lastname: ['', Validators.required],
+      telnum: ['', Validators.required],
+      email: ['', Validators.required],
       agree: false,
       contacttype: 'None',
       message: ''
@@ -34,6 +34,15 @@ export class ContractComponent implements OnInit {
   onSubmit(): void {
     this.feedback = this.feedbackForm.value;
     console.log(this.feedback);
-    this.feedbackForm.reset();
+    this.feedbackForm.reset({
+      // default state
+      firstname: '',
+      lastname: '',
+      telnum: '',
+      email: '',
+      agree: false,
+      contacttype: 'None',
+      message: ''
+    });
   }
 }
