@@ -44,34 +44,36 @@
               dividerColor="{{(feedbackForm.get('firstname').hasError('required') && feedbackForm.get('firstname').touched) ? 'warn' : 'primary'}}">
               <input mdInput formControlName="firstname" placeholder="First name" type="text" required>
               <md-hint>
-                <span [hidden]="!(feedbackForm.get('firstname').hasError('required') && feedbackForm.get('firstname').touched)">
-                  firstname is required</span>
+                  <span [hidden]="!(formErrors.firstname)">
+                    {{formErrors.firstname}}
+                  </span>
               </md-hint>
             </md-input-container>
             <md-input-container class="half-width"
               dividerColor="{{(feedbackForm.get('lastname').hasError('required') && feedbackForm.get('lastname').touched) ? 'warn' : 'primary'}}">
               <input mdInput formControlName="lastname" placeholder="Last name" type="text" required>
               <md-hint>
-                <span [hidden]="!(feedbackForm.get('lastname').hasError('required') && feedbackForm.get('lastname').touched)">
-                  lastname is required</span>
+                  <span [hidden]="!(formErrors.lastname)">
+                    {{formErrors.lastname}}
+                  </span>
               </md-hint>
             </md-input-container>
           </p>
           <p>
             <md-input-container class="half-width"
               dividerColor="{{(feedbackForm.get('telnum').hasError('required') && feedbackForm.get('telnum').touched) ? 'warn' : 'primary'}}">
-              <input mdInput formControlName="telnum" placeholder="Telephone number" type="text">
+              <input mdInput formControlName="telnum" placeholder="Telephone number" pattern="[0-9]*" type="text">
               <md-hint>
-                <span [hidden]="!(feedbackForm.get('telnum').hasError('required') && feedbackForm.get('telnum').touched)">
-                  Tel. number is required</span>
+                <span [hidden]="!(formErrors.telnum)">
+                  {{formErrors.telnum}}</span>
               </md-hint>
             </md-input-container>
             <md-input-container class="half-width"
               dividerColor="{{(feedbackForm.get('email').hasError('required') && feedbackForm.get('email').touched) ? 'warn' : 'primary'}}">
-              <input mdInput formControlName="email" placeholder="Email" type="email">
+              <input mdInput formControlName="email" placeholder="Email" email type="email">
               <md-hint>
-                <span [hidden]="!(feedbackForm.get('email').hasError('required') && feedbackForm.get('email').touched)">
-                  Email ID is required</span>
+                <span [hidden]="!(formErrors.email)">
+                 {{formErrors.email}}</span>
               </md-hint>
             </md-input-container>
           </p>
