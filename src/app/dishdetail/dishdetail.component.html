@@ -33,7 +33,7 @@
       </div>
     </div>
 
-    <div fxFlex="40" ngIf="dish">
+    <div fxFlex="40" *ngIf="dish">
       <div fxFlex *ngIf="dish.comments">
         <h1>Comments</h1>
         <md-list *ngFor="let comment of dish.comments">
@@ -52,7 +52,30 @@
       </div>
     </div>
   </div>
+  <div *ngIf="dish">
+    <h3>Leave your Comment</h3>
+    <p>{{ commentForm.value | json }}</p>
+    <form novalidate [formGroup]="commentForm">
+      <p>
+        <md-input-container>
+          <input mdInput formControlName="author" placeholder="Author" type="text" required>
+        </md-input-container>
+      </p>
+      <p>
+        <md-input-container>
+          <input mdInput formControlName="rating" placeholder="Rating" type="text" required>
+        </md-input-container>
+      </p>
+      <p>
+       <md-input-container class="full-width">
+         <textarea mdInput formControlName="comment" placeholder="Comment" rows=12 required></textarea>
+       </md-input-container>
+     </p>
+     <button type="submit" md-button class="background-primary text-floral-white">Submit</button>
+    </form>
+  </div>
 </div>
+
 <div [hidden]="dish">
   <md-spinner></md-spinner><h4>Loading . . . Please Wait</h4>
 </div>
