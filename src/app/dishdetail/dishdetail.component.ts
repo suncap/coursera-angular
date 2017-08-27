@@ -91,6 +91,19 @@ export class DishdetailComponent implements OnInit {
     }
   }
 
+  onSubmit(): void {
+    this.comment = this.commentForm.value;
+    this.comment.date = new Date().toISOString();
+    console.log(this.comment);
+    this.dish.comments.push(this.comment);
+    this.commentForm.reset({
+      // default state
+      author: '',
+      rating: 5,
+      comment: ''
+    });
+  }
+
   goBack(): void {
     this.location.back();
   }

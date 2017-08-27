@@ -54,8 +54,10 @@
   </div>
   <div *ngIf="dish">
     <h3>Leave your Comment</h3>
-    <p>{{ commentForm.value | json }}</p>
-    <form novalidate [formGroup]="commentForm" class="full-width">
+    <p>Preview of the comment
+      {{ commentForm.value | json }}
+    </p>
+    <form novalidate [formGroup]="commentForm" class="full-width" (ngSubmit)="onSubmit()">
       <p>
         <md-input-container class="full-width"
           dividerColor="{{(commentForm.get('author').hasError('required') && commentForm.get('author').touched) ? 'warn' : 'primary'}}">
