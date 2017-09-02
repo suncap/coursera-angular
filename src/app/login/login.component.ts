@@ -8,7 +8,11 @@ import {MdDialog, MdDialogRef} from '@angular/material';
 })
 export class LoginComponent implements OnInit {
 
-  user = {remember:false};
+  user = {
+    remember:false,
+    username: '',
+    password: ''
+  };
 
   constructor(private dialogRef: MdDialogRef<LoginComponent>) { }
 
